@@ -1,54 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AirBooms - Tienda</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AirBooms</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #111, #444);
-      color: white;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
     }
+
+    body {
+      background: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
     header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       padding: 2rem;
-      background: black;
-      color: #00ffcc;
     }
-    section {
-      padding: 3rem;
+
+    header h1 {
+      font-size: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
     }
-    .producto {
-      background: #222;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 10px;
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
       max-width: 500px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease 0.3s;
     }
-    .btn {
-      padding: 1rem 2rem;
-      background: #00ffcc;
-      color: black;
+
+    .reveal {
+      opacity: 1 !important;
+      transform: translateY(0px) !important;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 3rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .text {
+      max-width: 400px;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 1s ease;
+    }
+
+    .text.reveal {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .img {
+      max-width: 300px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease;
+    }
+
+    .img.reveal {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 2rem;
       border: none;
-      border-radius: 5px;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>AirBooms 🌀</h1>
-    <p>¡Los AirPods más ruidosos del multiverso!</p>
+    <h1 class="reveal-on-scroll">AirBooms</h1>
+    <p class="reveal-on-scroll">El sonido que hace temblar tu alma. Minimalismo con poder. Estilo que grita sin hacer ruido.</p>
   </header>
 
   <section>
-    <div class="producto">
-      <h2>AirBooms Pro 3000</h2>
-      <p>Cancelación de realidad. Bluetooth de otra dimensión.</p>
-      <button class="btn">Comprar ahora</button>
+    <div class="text reveal-on-scroll">
+      <h2>Calidad sin límites</h2>
+      <p>Diseñados para obsesionarte. Batería eterna, graves profundos y conexión instantánea. Bienvenido al futuro sonoro.</p>
+      <button>Comprar ahora</button>
     </div>
+    <img src="https://i.imgur.com/jxU7i9d.png" alt="AirBooms" class="img reveal-on-scroll"/>
   </section>
+
+  <footer>
+    © 2025 AirBooms™ | Síguenos en redes | Contacto: soporte@airbooms.com
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('reveal');
+        }
+      });
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
 </body>
 </html>
